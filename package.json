@@ -1,0 +1,30 @@
+{
+  "name": "crash-course",
+  "version": "1.0.0",
+  "description": "a node crash course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamshaunjp/node-crash-course.git"
+  },
+  "author": "net ninja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamshaunjp/node-crash-course/issues"
+  },
+  "homepage": "https://github.com/iamshaunjp/node-crash-course#readme",
+  "dependencies": {
+    "@firebase/storage": "^0.5.5",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "firebase": "^8.6.8",
+    "firebase-admin": "^9.10.0",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.12.14",
+    "morgan": "^1.10.0"
+  }
+}
