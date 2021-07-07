@@ -1,0 +1,51 @@
+<div class="preloader"> 
+  <div class="loading"> 
+    <img class ="lodeimg" src="https://media.giphy.com/media/VN0TA7BLHSO7RTkb31/giphy.gif">
+    <script>
+    document.addEventListener("DOMContentLoaded", () => { 
+      window.addEventListener("load", () => { 
+        const loader = document.querySelector(".preloader"); 
+
+        setTimeout(() => {
+             loader.classList.add("fadeOut");
+        }, 0); 
+
+        loader.addEventListener("animationend", () => { 
+            loader.style.display = "none";
+        });
+    });
+});
+
+    </script>
+  </div>
+</div>
+ <nav>
+  <div class="site-title">
+    <a href="/"><h1>NoteGet - beta</h1></a>
+    <p>Music sheet storage by Yanir</p>
+  </div>
+</nav>
+<input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
+<label for="page-nav-toggle">
+  <svg class="icon--menu-toggle" viewBox="0 0 60 30">
+    <g class="icon-group">
+      <g class="icon--menu">
+        <path d="M 6 0 L 54 0" />
+        <path d="M 6 15 L 54 15" />
+        <path d="M 6 30 L 54 30" />
+      </g>
+      <g class="icon--close">
+        <path d="M 15 0 L 45 30" />
+        <path d="M 15 30 L 45 0" />
+      </g>
+    </g>
+  </svg>
+</label>
+
+<nav class="main-navigation">
+  <ul>
+    <li><a href="/">Notes</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/sheet/create">Request a song</a></li>
+  </ul>
+</nav>

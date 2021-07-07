@@ -1,0 +1,20 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+  <div class="create-blog content">
+    <form action="/sheets" method="POST">
+      <label for="title">song name:</label>
+      <input type="text" id="title" name="name" required>
+      <label for="snippet">song author:</label>
+      <input type="text" id="snippet" name="songwriter" required>
+      <label for="body">song link:</label>
+      <textarea id="body" name="link" required></textarea>
+      <button>Submit</button>
+    </form>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="sheet content">
+    <form action="/search" method="GET">
+        <input value=<%= label %> type="text" name="searcher" placeholder="Search.." class="search_button">
+    </form>
+
+    <h2> The Results</h2>
+
+    <% if (sheet.length > 0) { %>
+      <% sheet.forEach(sheet => { %>
+        <a class="single" href="/sheet/<%= sheet._id %>">
+          <h3 class="title"><%= sheet.name %></h3>
+          <p class="snippet"><%= sheet.songauthor %></p>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p>There are no sheet to display...</p>
+    <% } %>
+    
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>

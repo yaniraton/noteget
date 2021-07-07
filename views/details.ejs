@@ -1,0 +1,33 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="details content">
+    <h2><%= sheet.name %></h2>
+    <h3>by <%= sheet.songauthor %></h3>
+    <div class="content">
+
+      <iframe src='<%= sheet.widget %>' width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+    <br>
+    <div class="buttons">
+      <% if (sheet.haseazy == true){ %>
+        <a href="/get/<%= sheet.id %>/eazy" class="aviable">eazy</a>
+      <% } else { %>
+        <a  class="not_aviable">eazy</a>
+      <% } %>
+      <a href='/get/<%= sheet.id %>/ragular' class="aviable">ragular</a>
+      <% if (sheet.hashard == true){ %>
+        <a href="/get/<%= sheet.id %>/hard" class="aviable">hard</a>
+      <% } else { %>
+        <a  class="not_aviable">hard</a>
+      <% } %>
+    </div>
+
+  <%- include("./partials/footer.ejs") %>
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+  <div class="create-blog content">
+    <form action="/sheets" method="POST">
+      <label for="title">song name:</label>
+      <input type="text" id="title" name="name" required>
+      <label for="snippet">song author:</label>
+      <input type="text" id="snippet" name="songwriter" required>
+      <label for="body">song link:</label>
+      <textarea id="body" name="link" required></textarea>
+      <button>Submit</button>
+    </form>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyChwK58Yiaav5h068QEjK38jJztewklkJw",
+    authDomain: "noteget.firebaseapp.com",
+    projectId: "noteget",
+    storageBucket: "noteget.appspot.com",
+    messagingSenderId: "482337229112",
+    appId: "1:482337229112:web:1f1ba3a2b015b63bd5d9cd",
+    measurementId: "G-Y659D8YKS8"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+</html>
