@@ -1,4 +1,4 @@
 # noteget
 
 
-https://batanoteget.harokuapp.com
+https://batanoteget.herokuapp.com
