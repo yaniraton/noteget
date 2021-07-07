@@ -1,4 +1,4 @@
 # noteget
 
 
-batanoteget.harokuapp.com
+https://batanoteget.harokuapp.com
