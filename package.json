@@ -24,7 +24,7 @@
     "firebase": "^8.6.8",
     "firebase-admin": "^9.10.0",
     "lodash": "^4.17.21",
-    "mongoose": "^5.13.9",
+    "mongoose": "^5.13.13",
     "morgan": "^1.10.0"
   }
 }
