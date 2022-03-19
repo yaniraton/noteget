@@ -1,18 +1,20 @@
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const sheet = require('./models/sheet');
 const fs = require('fs');
+require('dotenv').config();
+const uuid = require('uuid');
 const sheet_request = require('./models/Request_sheets')
-const names = require('./models/names')
-const PORT = process.env.PORT || 3000;
-
+const PORT = process.env.PORT || 4000;
 
 // express app
 const app = express();
 
 // connect to mongodb & listen for requests
-const dbURI = "dbcode";
+const dbURI = process.env.mongodb_string;
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => app.listen(PORT, () => console.log("start",PORT)))
@@ -20,14 +22,27 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 // register view engine
 app.set('view engine', 'ejs');
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'sheets')
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    global.filePath_ = `${file.originalname}`;
+    cb(null, filePath_);
+  }
+})
+
 // middleware & static files
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
-app.use((req, res, next) => {
-  res.locals.path = req.path;
-  next();
-});
+// app.use((req, res, next) => {
+//   res.locals.path = req.path;
+//   next();
+// });
+const upload = multer({ storage }); // or simply { dest: 'uploads/' }
+
 
 // routes
 app.get('/', (req, res) => {
@@ -53,6 +68,10 @@ app.get('/home', (req, res) => {
     });
 });
 
+app.get('/up', (req, res) => {
+  res.render('uploder', { title: ''})
+});
+
 app.post('/sheets', (req, res) => {
   console.log(req.body);
   const sheet = new sheet_request(req.body);
@@ -60,6 +79,34 @@ app.post('/sheets', (req, res) => {
   sheet.save()
     .then(result => {
       res.redirect('/');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+app.post('/upload',upload.single("avatar"), (req, res) => {
+  if (req.body.haseazy == "on"){
+    var haseazy_ = true;
+  }else{
+    var haseazy_ = false;
+  }
+  if (req.body.hashard == "on"){
+    var hashard_ = true;
+  }else{
+    var hashard_ = false;
+  }
+  const filePath = `./sheets/${filePath_}`
+  const new_sheet = new sheet({
+    name:req.body.name,
+    songauthor:req.body.songauthor,
+    file:filePath,
+    haseazy: haseazy_,
+    hashard: hashard_,
+    widget: req.body.widget
+  });
+  new_sheet.save()
+    .then(result => {
+      return res.json({ status: 'OK' });
     })
     .catch(err => {
       console.log(err);

@@ -452,3 +452,309 @@
     .search_button:focus {
       width: 20%;
     }
+    .notifications {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	--hue: 223;
+	--bg: hsl(var(--hue),10%,90%);
+	--fg: hsl(var(--hue),10%,10%);
+	font-size: calc(40px + (60 - 40) * (100vw - 320px) / (1280 - 320));
+	color: var(--fg);
+	font: 1em/1.5 "DM Sans", sans-serif;
+	background: transparent;
+	box-shadow: 0 0 0 0.1em transparent;
+	filter: brightness(1) grayscale(1);
+	position: relative;
+	width: 1.5em;
+	height: 1.5em;
+	transition: filter 0.15s 0.3s linear;
+	-webkit-appearance: none;
+	appearance: none;
+	-webkit-tap-highlight-color: transparent;
+}
+.notifications:focus {
+	outline: none;
+}
+.notifications:before,
+.notifications:after,
+.notifications__badge,
+.notifications__waves,
+.notifications__sr {
+	position: absolute;
+}
+.notifications:before,
+.notifications:after {
+	content: "";
+	display: block;
+}
+.notifications:before {
+	background: radial-gradient(0.4em 0.4em at 50% 1.1em,hsl(38,90%,55%) 47%,hsla(38,90%,55%,0) 50%);
+	top: 0.2em;
+	left: calc(50% - 0.2em);
+	width: 0.4em;
+	height: 1.3em;
+	transform-origin: 50% 0.2em;
+}
+.notifications:after {
+	background:
+		/* rim  */
+		radial-gradient(0.4em 0.2em at 0.2em 1.2em,hsl(45,90%,55%) 46%,hsla(45,90%,55%,0) 50%),
+		linear-gradient(hsl(45,90%,55%),hsl(45,90%,55%)) 0.2em 1.1em / 1.1em 0.2em no-repeat,
+		radial-gradient(0.4em 0.2em at 1.3em 1.2em,hsl(45,90%,55%) 46%,hsla(45,90%,55%,0) 50%),
+		/* middle  */
+		radial-gradient(1.2em 1.2em at 50% 0.75em,hsl(38,90%,55%) 49%,hsla(38,90%,55%,0) 50%) 0 0 / 100% 75% no-repeat,
+		linear-gradient(hsl(38,90%,55%),hsl(38,90%,55%)) 0.15em 0.75em / 1.2em 0.4em no-repeat,
+		/* top */
+		radial-gradient(0.3em 0.3em at 50% 0.15em,hsl(45,90%,55%) 48%,hsla(45,90%,55%,0) 50%);
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform-origin: 50% 0.15em;
+}
+.notifications__badge {
+	background: hsl(3,90%,55%);
+	border-radius: 0.375rem;
+	color: hsl(0,0%,100%);
+	font-size: 0.5em;
+	font-weight: bold;
+	padding: 0 0.125rem;
+	top: -0.125rem;
+	right: -0.125rem;
+	min-width: 0.75rem;
+	height: 0.75rem;
+	text-align: center;
+	transition: transform 0.3s 0.15s ease-out;
+	z-index: 1;
+}
+.notifications__badge:empty {
+	transform: scale(0);
+	transition-delay: 0s;
+}
+.notifications__waves,
+.notifications--active:before,
+.notifications--active:after {
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+.notifications__waves {
+	animation-delay: 0.6s;
+	border-top: 0.1em solid transparent;
+	border-right: 0.1em solid hsla(var(--hue),10%,50%);
+	border-bottom: 0.1em solid transparent;
+	border-left: 0.1em solid hsla(var(--hue),10%,50%);
+	border-radius: 50%;
+	top: -50%;
+	left: -50%;
+	opacity: 0;
+	pointer-events: none;
+	width: 200%;
+	height: 200%;
+	transform: scale(0.3);
+}
+.notifications__waves:nth-child(2) { animation-delay: 0.75s; }
+.notifications__waves:nth-child(3) { animation-delay: 0.9s; }
+.notifications__waves:nth-child(4) { animation-delay: 1.05s; }
+
+.notifications--active {
+	filter: brightness(1) grayscale(0);
+	transition-delay: 0s;
+}
+
+.notifications--active:before,
+.notifications--active:after {
+	animation-delay: 0.3s;
+}
+
+.notifications--active:before {animation-name: ringBefore; }
+.notifications--active:after {animation-name: ringAfter; }
+.notifications--active .notifications__waves {animation-name: waves; }
+
+.notifications__sr {
+	clip: rect(1px,1px,1px,1px);
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: hsl(var(--hue),10%,10%);
+		--fg: hsl(var(--hue),10%,90%);
+	}
+}
+
+/* Animations */
+@keyframes ringBefore {
+	from { transform: rotate(0); }
+	15% { transform: rotate(-3deg); }
+	20% { transform: rotate(6deg); }
+	25% { transform: rotate(-6deg); }
+	30% { transform: rotate(18deg); }
+	35% { transform: rotate(-18deg); }
+	40% { transform: rotate(22deg); }
+	45% { transform: rotate(-20deg); }
+	50% { transform: rotate(18deg); }
+	55% { transform: rotate(-16deg); }
+	60% { transform: rotate(14deg); }
+	65% { transform: rotate(-12deg); }
+	70% { transform: rotate(10deg); }
+	75% { transform: rotate(-8deg); }
+	80% { transform: rotate(6deg); }
+	85% { transform: rotate(-4deg); }
+	90% { transform: rotate(2deg); }
+	95% { transform: rotate(-1deg); }
+	
+}
+@keyframes ringAfter {
+	from,
+	40%,
+	to {
+		transform: rotate(0);
+	}
+	5%,
+	35% {
+		transform: rotate(10deg);
+	}
+	10%,
+	30% {
+		transform: rotate(-10deg);
+	}
+	15%,
+	25% {
+		transform: rotate(20deg);
+	}
+	20% {
+		transform: rotate(-20deg);
+	}
+}
+@keyframes waves {
+	from {
+		opacity: 1;
+		transform: scale(0.3);
+	}
+	20%,
+	to {
+		opacity: 0;
+		transform: scale(1);
+	}
+}
+
+.popup-container {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.3);
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 17, 17, 0.61);
+  display: flex;
+  align-items: center;
+}
+.popup-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+.popup-content p{
+  font-size: 17px;
+  padding: 10px;
+  line-height: 20px;
+}
+.popup-content a.close{
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  background: none;
+  padding: 0;
+  margin: 0;
+  text-decoration:none;
+}
+
+.popup-content a.close:hover{
+color:#333;
+}
+
+.popup-content span:hover,
+.popup-content span:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.popup-container:target{
+visibility: visible;
+opacity: 1;
+transform: scale(1);
+}
+
+.popup-container h3{
+margin:10px;
+}
+/*End popup styles*/
+
+/* Additional styles */
+.popup-style-2{
+transform: scale(0.3);
+
+}
+
+.popup-style-2:target{
+transform: scale(1);
+}
+
+.popup-style-3{
+left:100%;
+
+}
+
+.popup-style-3:target{
+left:0;
+}
+
+.popup-style-4{
+transform: rotate(180deg);
+}
+
+.popup-style-4:target{
+transform: rotate(0deg);
+}
+
+.popup-style-5{
+top:100%;
+
+}
+
+.popup-style-5:target{
+top:0;
+}
+
+.popup-style-6{
+transform: scale(15.3);
+
+}
+
+.popup-style-6:target{
+transform: scale(1);
+}
+
+.popup-style-7{
+transform: skewY(180deg);
+ transition: all 0.7s ease-in-out;
+}
+
+.popup-style-7:target{
+transform: skewY(0deg);
+
+}

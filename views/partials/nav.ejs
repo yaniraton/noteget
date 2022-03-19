@@ -23,6 +23,14 @@
   <div class="site-title">
     <a href="/"><h1>NoteGet - beta</h1></a>
     <p>Music sheet storage by Yanir</p>
+    <button onclick="window.location.href='#announcement'" id="notifications" class="notifications notifications--active" type="button">
+      <span class="notifications__waves"></span>
+      <span class="notifications__waves"></span>
+      <span class="notifications__waves"></span>
+      <span class="notifications__waves"></span>
+      <span class="notifications__sr">Notifications</span>
+      <span class="notifications__badge" data-badge>1</span>
+    </button>
   </div>
 </nav>
 <input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
@@ -49,3 +57,11 @@
     <li><a href="/sheet/create">Request a song</a></li>
   </ul>
 </nav>
+
+<div id="announcement" class="popup-container">
+  <div class="popup-content">
+    <a href="#" class="close">&times;</a>
+    <h3>announcement</h3>
+    <p>I'm reviving the project and I've decided to get back to working on it in your spare time. Look forward to the updates soon!</p>
+  </div>
+</div>
