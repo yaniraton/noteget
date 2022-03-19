@@ -65,6 +65,7 @@ app.get('/home', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.redirect('/404');
     });
 });
 
@@ -82,6 +83,7 @@ app.post('/sheets', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.redirect('/404');
     });
 });
 app.post('/upload',upload.single("avatar"), (req, res) => {
@@ -110,6 +112,7 @@ app.post('/upload',upload.single("avatar"), (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.redirect('/404');
     });
 });
 
@@ -121,6 +124,7 @@ app.get('/sheet/:id', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.redirect('/404');
     });
 });
 app.get('/get/:id/:lev', (req, res) => {
@@ -144,7 +148,7 @@ app.get('/get/:id/:lev', (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      req.redirect('/404')
+      res.redirect('/404');
     });
 
 
