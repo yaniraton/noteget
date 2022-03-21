@@ -34,6 +34,6 @@ const sheetSchema = new Schema({
   }
 
 }, { timestamps: true });
-sheetSchema.index({name: 'text', songauthor: 'text'});
+sheetSchema.index({name: 'text', songauthor: 'text2'});
 const sheet_schema = mongoose.model('sheets', sheetSchema);
 module.exports = sheet_schema;

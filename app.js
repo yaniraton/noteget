@@ -154,25 +154,39 @@ app.get('/get/:id/:lev', (req, res) => {
 
 
 });
-app.get('/test', (req, res) => {
-  const test = new sheet({
-    name: 'warriors',
-    songauthor: 'imagine dragons',
-    file: './sheets/warriors/warriors_ragular.pdf',
-    hardfile: './sheets/warriors/warriors_Hard.pdf',
-    haseazy: 'false',
-    hashard: 'true',
-    widget: 'https://open.spotify.com/embed/track/1lgN0A2Vki2FTON5PYq42m'
+// app.get('/test', (req, res) => {
+//   const test = new sheet({
+//     name: 'bones',
+//     songauthor: 'imagine dragons',
+//     file: './sheets/warriors/bones_ragular.pdf',
+//     haseazy: 'false',
+//     hashard: 'false',
+//     widget: 'https://open.spotify.com/embed/track/0HqZX76SFLDz2aW8aiqi7G?utm_source=generator'
 
-  })
+//   })
+//   test.save()
+//     .then(result => {
+//       res.redirect('/');
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.redirect('/404');
+//     });
 
-})
+// })
 
 app.get('/search', (req, res) => {
   const name = req.query.searcher;
-  sheet.find({$text: {$search: name}})
+  sheet.find({
+    // $or: [
+    //   {name: {$search: name, $caseSensitive: false}},
+    //   {songauthor: name}
+    // ]
+    $text: {$search: name, $caseSensitive: false}
+  })
   .limit(10)
   .exec((err,dov) => {
+    console.log(dov);
     res.render('search', { label: name, sheet: dov, title: 'Result Details' });
   })
 });
