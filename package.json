@@ -1,7 +1,7 @@
 {
-  "name": "crash-course",
-  "version": "1.0.0",
-  "description": "a node crash course",
+  "name": "NoteGet",
+  "version": "0.8.3",
+  "description": "MUSIC SHEET STORAGE BY YANIR",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,15 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iamshaunjp/node-crash-course.git"
+    "url": "git+https://github.com/godmingty/noteget.git"
   },
-  "author": "net ninja",
+  "author": "GodMing",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/iamshaunjp/node-crash-course/issues"
+    "url": "https://github.com/godmingty/noteget/issues"
   },
-  "homepage": "https://github.com/iamshaunjp/node-crash-course#readme",
+  "homepage": "https://github.com/godmingty/noteget",
   "dependencies": {
+    "aws-sdk": "^2.1101.0",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.2",
     "express": "^4.17.1",
@@ -25,6 +26,7 @@
     "mongoose": "^5.12.14",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
+    "multer-s3": "^2.10.0",
     "path": "^0.12.7",
     "uuid": "^8.3.2"
   }

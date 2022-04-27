@@ -1,4 +1,5 @@
 const express = require('express');
+const aws = require('aws-sdk');
 const multer = require('multer');
 const path = require('path');
 const morgan = require('morgan');
@@ -8,10 +9,12 @@ const fs = require('fs');
 require('dotenv').config();
 const uuid = require('uuid');
 const sheet_request = require('./models/Request_sheets')
-const PORT = process.env.PORT || 4000;
+const multerS3 = require('multer-s3');
+const PORT = process.env.PORT || 3000;
 
 // express app
 const app = express();
+const s3 = new aws.S3({ apiVersion: '2006-03-01' });
 
 // connect to mongodb & listen for requests
 const dbURI = process.env.mongodb_string;
@@ -21,6 +24,23 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch(err => console.log(err));
 // register view engine
 app.set('view engine', 'ejs');
+
+
+// const upload = multer({
+//   storage: multerS3({
+//       s3,
+//       bucket: 'noteget',
+//       metadata: (req, file, cb) => {
+//         console.log(req.body);
+//           cb(null, { fieldName: file.fieldname });
+//       },
+//       key: (req, file, cb) => {
+//           const ext = path.extname(file.originalname);
+//           cb(null, `${file.originalname}${ext}`);
+//       }
+//   })
+// });
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -32,6 +52,9 @@ const storage = multer.diskStorage({
     cb(null, filePath_);
   }
 })
+const upload = multer({ storage })
+const cpUpload = upload.fields([{ name: 'mainfile', maxCount: 1 }, { name: 'eazyfile', maxCount: 1 }]);
+
 
 // middleware & static files
 app.use(express.static('public'));
@@ -41,7 +64,6 @@ app.use(morgan('dev'));
 //   res.locals.path = req.path;
 //   next();
 // });
-const upload = multer({ storage }); // or simply { dest: 'uploads/' }
 
 
 // routes
@@ -70,7 +92,7 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/up', (req, res) => {
-  res.render('uploder', { title: ''})
+  res.render('uploder', { title: 'uploder'})
 });
 
 app.post('/sheets', (req, res) => {
@@ -86,7 +108,8 @@ app.post('/sheets', (req, res) => {
       res.redirect('/404');
     });
 });
-app.post('/upload',upload.single("avatar"), (req, res) => {
+app.post('/upload',cpUpload, (req, res) => {
+  console.log(req);
   if (req.body.haseazy == "on"){
     var haseazy_ = true;
   }else{
