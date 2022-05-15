@@ -2,3 +2,4 @@ node_modules
 # sheets
 .env
 admin
+workspace.code-workspace
