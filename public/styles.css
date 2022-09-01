@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       text-decoration: none;
-      color: #222;
+      color: #364F6B;
     }
 
     /* nav & footer styles */
@@ -19,7 +19,7 @@
       justify-content: space-between;
       margin-bottom: 60px;
       padding-bottom: 10px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #EEEEEE;
       text-transform: uppercase;
     }
     /* nav ul{
@@ -59,10 +59,10 @@
       display: block;
       margin: 40px 0;
       padding-left: 30px;
-      border-left: 6px solid crimson;
+      border-left: 6px solid #3FC1C9;
     }
     .sheet a:hover h3{
-      color: crimson;
+      color: #3FC1C9;
     }
 
     /* details styles */
@@ -102,7 +102,7 @@
     }
     .create-blog button{
       margin-top: 20px;
-      background: crimson;
+      background: #3FC1C9;
       color: white;
       padding: 6px;
       border: 0;
@@ -189,8 +189,8 @@
     }
     @import url("https://fonts.googleapis.com/css?family=Merriweather:900&display=swap");
     :root {
-      --color-primary: #0011ff;
-      --color-secondary: #F0F7Eb;
+      --color-primary: #3FC1C9;
+      --color-secondary: #c9643f;
       --duration: 1s;
       --nav-duration: calc(var(--duration) / 4);
       --ease: cubic-bezier(0.215, 0.61, 0.355, 1);
