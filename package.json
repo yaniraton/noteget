@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/godmingty/noteget",
   "dependencies": {
-    "aws-sdk": "^2.1146.0",
+    "aws-sdk": "^2.1456.0",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
